@@ -2,7 +2,9 @@
 Sudoku Board Generator made with Clingo
 
   References:
+  
     - https://www.cs.utexas.edu/users/vl/teaching/378/pwc.pdf
+    
     - http://www.hakank.org/constraint_programming_blog/2010/12/a_first_look_at_answer_set_programming.html
 
 How to Run:
