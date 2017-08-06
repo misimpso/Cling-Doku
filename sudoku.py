@@ -56,7 +56,24 @@ def parse_result(out):
 	
 def render_level(design, width, height):
     #print(design['cell']) 
-    val = {c:v for (v,c) in design['cell']}
+    val = {c:v if c in design['given'] else "=" for (v,c) in design['cell']}
+    #print (design['zone'])
+    zone = {}
+    for (c, x, y) in design['zone']:
+        #print("{}: {}, {}".format(c, x, y))
+        if (x/3, y/3) not in zone:
+            zone[(x/3,y/3)] = [c]
+            zone[(x/3, y/3)] = sorted(zone[(x/3, y/3)], key=lambda tup: tup[0])
+        else:
+            zone[(x/3,y/3)].append(c)
+    #zone = {(x, y):c for (c, x, y) in design['zone']}
+    for k in zone:
+        w = 0
+        for c in zone[k]:
+            if c in design['given']:
+                w += 1
+        print("{}: {}".format(k, w))
+    #print(design["given"])
     # row = {}
     # for c in val:
         # #print("{}".format(c))
@@ -67,6 +84,7 @@ def render_level(design, width, height):
 			# row[c[1]] = [(c, val[c])]
     # #for i in range(0, len(row)):
     # #    print("{}: {}".format(i, row[i]))
+    #print(zone)
     return val
 
 if __name__ == '__main__':

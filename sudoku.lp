@@ -1,6 +1,8 @@
 #const width=9.
 #const height=9.
 #const divs=3.
+#const lower=3.
+#const higher=5.
 
 % Cell Values
 values(1..width).
@@ -38,5 +40,9 @@ zone_share(C1, C2) :- border(B1; B2); zone(C1, B1, B2); zone(C2, B1, B2).
 
 :- coord(C1; C2); zone_share(C1, C2); cell(V1, C1); cell(V2, C2); C1 != C2; V1 == V2.
 
+lower { given(C) : zone(C, B1, B2) } higher :- border(B1), border(B2).
+
 #show cell/2.
+#show given/1.
+#show zone/3.
 
